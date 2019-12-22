@@ -121,11 +121,11 @@ func MARSHALL_HTTP(w http.ResponseWriter, r *http.Request) {
 }		
 
 func main() {
-
     ticker := time.NewTicker(time.Millisecond * 3600000)//каждый час
+	 http.HandleFunc("/", MARSHALL_HTTP)
+     http.ListenAndServe(":8080", nil)
 		for t:= range ticker.C {
 			http.HandleFunc("/", MARSHALL_HTTP)
-		        http.ListenAndServe(":8080", nil)
 			fmt.Println("debug Tick", t)
 		}
 }
